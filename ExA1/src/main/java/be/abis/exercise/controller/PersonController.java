@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.abis.exercise.exception.PersonCanNotBeDeletedException;
+import be.abis.exercise.model.Login;
 import be.abis.exercise.model.Person;
 import be.abis.exercise.service.PersonService;
 
@@ -59,8 +60,8 @@ public class PersonController {
 	
 	
 	@PostMapping("login")
-	public Person login(@RequestBody Person person) {
-		Person newPerson = personService.findPerson(person.getEmailAddress(), person.getPassword());
+	public Person login(@RequestBody Login login) {
+		Person newPerson = personService.findPerson(login.getEmailAddress(), login.getPassword());
 		return newPerson;
 	}
 	

@@ -1,4 +1,4 @@
-package be.abis.controller;
+package be.abis.exercise.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

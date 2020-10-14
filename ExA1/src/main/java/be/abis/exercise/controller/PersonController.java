@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.abis.exercise.exception.PersonCanNotBeDeletedException;
 import be.abis.exercise.model.Login;
+import be.abis.exercise.model.Password;
 import be.abis.exercise.model.Person;
 import be.abis.exercise.service.PersonService;
 
@@ -63,6 +65,24 @@ public class PersonController {
 	public Person login(@RequestBody Login login) {
 		Person newPerson = personService.findPerson(login.getEmailAddress(), login.getPassword());
 		return newPerson;
+	}
+	
+	
+	@PutMapping("changepw/{id}")
+	public void changepw(@PathVariable("id") int personId, @RequestBody Password pw )
+	{
+		Person foundPerson = personService.findPerson(personId);
+		if (foundPerson != null) {
+			try {
+				personService.changePassword(foundPerson, pw.getPassword());
+			}
+			catch (IOException e){
+				System.out.println("Error updating password : " + personId + " error:" + e.getMessage());
+			}
+		}
+		else {
+			System.out.println("Person " + personId + " does not exists"); 
+		}
 	}
 	
 

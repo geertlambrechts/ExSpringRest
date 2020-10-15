@@ -37,9 +37,7 @@ public class ApiPersonService implements PersonService {
 	
 	@Override
 	public Person login(Login login) {
-		System.out.println("in login ApiPersonService login=" + login.getEmail() + " "+ login.getPassword());
 		Person p = rt.postForObject(baseURL+"/login",login,Person.class);
-		System.out.println("after api-call p=" + p);
 		return p;
 	}
 

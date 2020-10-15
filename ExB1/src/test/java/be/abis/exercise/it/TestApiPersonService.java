@@ -49,11 +49,10 @@ public class TestApiPersonService {
 	
 	@Test
 	public void testLoginJohnDoe() {
-		System.out.println("in login testLoginJohnDoe");
 		Login login = new Login("jdoe@abis.be","c");
 				
 		Person p = personService.login(login);
-		assertEquals(p.getFirstName(),"Joe");
+		assertEquals(p.getFirstName(),"John");
 	}
 
 }

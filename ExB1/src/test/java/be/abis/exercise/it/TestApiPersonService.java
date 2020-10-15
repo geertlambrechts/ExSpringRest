@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import be.abis.exercise.model.Login;
+import be.abis.exercise.model.Password;
 import be.abis.exercise.model.Person;
 import be.abis.exercise.service.PersonService;
 
@@ -42,6 +44,16 @@ public class TestApiPersonService {
 			}
 		}
 		assertTrue(peterFound);
+	}
+	
+	
+	@Test
+	public void testLoginJohnDoe() {
+		System.out.println("in login testLoginJohnDoe");
+		Login login = new Login("jdoe@abis.be","c");
+				
+		Person p = personService.login(login);
+		assertEquals(p.getFirstName(),"Joe");
 	}
 
 }

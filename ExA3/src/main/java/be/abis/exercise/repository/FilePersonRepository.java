@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -103,6 +104,23 @@ public class FilePersonRepository implements PersonRepository {
 			}
 		}
 		return null;
+	}
+	
+
+	@Override
+	public List<Person> findPersonsByCompanyName(String compName) {
+		List<Person> personsOfTheCompany = new ArrayList<>();
+		this.readFile();
+		// System.out.println("persons in PersonList" + allPersons);
+		Iterator<Person> iter = allPersons.iterator();
+
+		while (iter.hasNext()) {
+			Person pers = iter.next();
+			if (pers.getCompany().getName().equalsIgnoreCase(compName)) {
+				personsOfTheCompany.add(pers);
+			}
+		}
+		return personsOfTheCompany;
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package be.abis.exercise.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class AbisPersonService implements PersonService {
 	@Override
 	public Person findPerson(String emailAddress, String passWord) {
 		return personRepository.findPerson(emailAddress, passWord);
+	}
+	
+	@Override
+	public List<Person> findPersonsByCompanyName(String compName)  {
+		return personRepository.findPersonsByCompanyName(compName);
 	}
 
 	@Override
